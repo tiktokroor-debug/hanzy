@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesan Cinta by Reyhan</title>
+    <!-- Import Google Fonts untuk efek keren -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 50%, #fad0c4 100%); /* Gradien pink romantis */
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif; /* Font utama: Modern dan bold */
+            overflow: hidden;
+            color: #fff;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Tampilan Awal: Tombol */
+        .initial-screen {
+            text-align: center;
+            z-index: 20;
+        }
+
+        .initial-screen h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700; /* Bold */
+            font-size: 2rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .love-button {
+            font-family: 'Poppins', sans-serif; /* Font tombol: Stylish bold */
+            font-size: 1.8rem;
+            font-weight: 600;
+            padding: 15px 30px;
+            background: rgba(255, 20, 147, 0.8); /* Pink transparan */
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
+            transition: all 0.3s ease;
+            letter-spacing: 2px;
+        }
+
+        .love-button:hover {
+            background: rgba(255, 20, 147, 1);
+            box-shadow: 0 0 30px rgba(255, 20, 147, 0.8);
+            transform: scale(1.05);
+        }
+
+        .love-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Tampilan Setelah Klik: Emoji dan Teks */
+        .love-message {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .love-message.show {
+            opacity: 1;
+            pointer-events: all;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Emoji 💌 Animasi */
+        .emoji-container {
+            font-size: 8rem; /* Besar untuk efek wow */
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(100px) rotate(0deg);
+            animation: flyUp 2s ease-out 0.5s forwards; /* Mulai setelah 0.5s */
+        }
+
+        @keyframes flyUp {
+            0% { 
+                opacity: 0; 
+                transform: translateY(100px) rotate(0deg) scale(0.5); 
+            }
+            50% { 
+                opacity: 1; 
+                transform: translateY(-20px) rotate(180deg) scale(1.2); 
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0) rotate(360deg) scale(1); 
+            }
+        }
+
+        /* Kata-kata Gombalan/Cinta */
+        .love-texts {
+            text-align: center;
+            max-width: 80%;
+            font-family: 'Poppins', sans-serif; /* Font teks: Clean modern */
+            font-weight: 600; /* Semi-bold untuk impact */
+            font-size: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .love-line {
+            opacity: 0;
+            transform: translateY(20px);
+            margin: 15px 0;
+            color: #ff1493;
+            text-shadow: 0 0 10px rgba(255, 20, 147, 0.8);
+            animation: slideInGlow 1s ease-out forwards;
+        }
+
+        .love-line:nth-child(1) { animation-delay: 2.5s; } /* Setelah emoji */
+        .love-line:nth-child(2) { animation-delay: 3.5s; }
+        .love-line:nth-child(3) { animation-delay: 4.5s; }
+        .love-line:nth-child(4) { animation-delay: 5.5s; }
+        .love-line.signature { 
+            font-family: 'Dancing Script', cursive; /* Font signature: Handwritten romantis */
+            font-size: 2rem; /* Lebih besar dan elegan */
+            font-weight: 700;
+            color: #ff69b4;
+            animation-delay: 6.5s;
+            margin-top: 30px;
+            text-shadow: 0 0 15px rgba(255, 105, 180, 0.8);
+        }
+
+        @keyframes slideInGlow {
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+                text-shadow: 0 0 20px rgba(255, 20, 147, 1);
+            }
+        }
+
+        /* Partikel Hati Background */
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff1493;
+            opacity: 0.7;
+            animation: floatUp 5s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Sembunyikan initial screen setelah klik */
+        .initial-screen.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Tampilan Awal: Tombol -->
+    <div class="initial-screen" id="initialScreen">
+        <h2>Silahkan Klik Tombol Ini...</h2>
+        <button class="love-button" onclick="showLoveMessage()">Klik untuk Pesan Cinta 💕</button>
+    </div>
+
+    <!-- Tampilan Setelah Klik: Emoji + Teks -->
+    <div class="love-message" id="loveMessage">
+        <div class="emoji-container">💌</div>
+        <div class="love-texts">
+            <div class="love-line">Kamu adalah bintang yang menerangi malamku yang gelap.</div>
+            <div class="love-line">Setiap senyummu membuat hatiku meleleh seperti es krim di musim panas.</div>
+            <div class="love-line">Aku cinta kamu, lebih dari kata-kata bisa ungkapkan.</div>
+            <div class="love-line signature">by Reyhan 💖</div>
+        </div>
+    </div>
+
+    <!-- Partikel Hati (selalu ada di background) -->
+    <div class="hearts" id="hearts"></div>
+
+    <script>
+        // Fungsi tampilkan pesan cinta saat tombol diklik
+        function showLoveMessage() {
+            document.getElementById('initialScreen').classList.add('hidden');
+            document.getElementById('loveMessage').classList.add('show');
+            
+            // Mulai generate hati partikel
+            createHearts();
+            
+            // Loop hati baru setiap 4 detik
+            setInterval(createHearts, 4000);
+        }
+
+        // Generate partikel hati
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const numHearts = 20;
+
+            // Hapus hati lama
+            const oldHearts = document.querySelectorAll('.heart');
+            oldHearts.forEach(h => h.remove());
+
+            for (let i = 0; i < numHearts; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '💖'; // Emoji hati
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Mulai dengan sedikit hati di background awal
+        window.addEventListener('load', () => {
+            createHearts();
+            setInterval(createHearts, 5000); // Loop awal
+        });
+
+        // Interaksi tambahan: Klik di mana saja setelah muncul untuk reset (opsional)
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('love-button')) return; // Jangan reset saat klik tombol
+            if (document.getElementById('loveMessage').classList.contains('show')) {
+                location.reload(); // Reset ke tampilan awal
+            }
+        });
+
+        console.log("Pesan cinta siap dengan font keren! Klik tombol untuk mulai animasi. 💌 by Reyhan");
+    </script>
+</body>
+</html>
